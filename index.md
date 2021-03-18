@@ -1,4 +1,4 @@
-
+<style> table { margin: auto; } </style>
 # <center>3D AffordanceNet: A Benchmark for Visual Object Affordance Understanding</center>
 <center>Shengheng Deng<sup>1</sup>, Xun Xu<sup>2</sup>, Chaozheng Wu<sup>1</sup>, Ke Chen<sup>1</sup>, Kui Jia<sup>1</sup></center>
 <center><sup>1</sup>South China University of Technology <sup>2</sup>I2R ASTAR</center>
