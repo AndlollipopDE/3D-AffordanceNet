@@ -1,10 +1,9 @@
-<style> table { margin: auto; } </style>
 # <center>3D AffordanceNet: A Benchmark for Visual Object Affordance Understanding</center>
 <center>Shengheng Deng<sup>1</sup>, Xun Xu<sup>2</sup>, Chaozheng Wu<sup>1</sup>, Ke Chen<sup>1</sup>, Kui Jia<sup>1</sup></center>
 <center><sup>1</sup>South China University of Technology <sup>2</sup>I2R ASTAR</center>
 
 ## Abstract
-The ability to understand the ways to interact with objects from visual cues, a.k.a. visual affordance, is essential to vision-guided robotic research. This involves categorizing, segmenting and reasoning of visual affordance. Relevant studies in 2D and 2.5D image domains have been made previously, however, a truly functional understanding of object affordance requires learning and prediction in the 3D physical domain, which is still absent in the community. In this work, we present a `3D AffordanceNet` dataset, a benchmark of 23k shapes from 23 semantic object categories, annotated with 18 visual affordance categories. Based on this dataset, we provide three benchmarking tasks for evaluating visual affordance understanding, including `full-shape`, `partial-view` and `rotation-invarian`t affordance estimations. Two state-of-the-art point cloud deep learning networks are evaluated on all tasks. In addition we also investigate a `semi-supervised learning` setup to explore the possibility to benefit from unlabeled data. Comprehensive results on our contributed dataset show the promise of visual affordance understanding as a valuable yet challenging benchmark.  
+The ability to understand the ways to interact with objects from visual cues, a.k.a. visual affordance, is essential to     vision-guided robotic research. This involves categorizing, segmenting and reasoning of visual affordance. Relevant studies in 2D and 2.5D image domains have been made previously, however, a truly functional understanding of object affordance requires learning and prediction in the 3D physical domain, which is still absent in the community. In this work, we present a `3D AffordanceNet` dataset, a benchmark of 23k shapes from 23 semantic object categories, annotated with 18 visual affordance categories. Based on this dataset, we provide three benchmarking tasks for evaluating visual affordance understanding, including `full-shape`, `partial-view` and `rotation-invarian`t affordance estimations. Two state-of-the-art point cloud deep learning networks are evaluated on all tasks. In addition we also investigate a `semi-supervised learning` setup to explore the possibility to benefit from unlabeled data. Comprehensive results on our contributed dataset show the promise of visual affordance understanding as a valuable yet challenging benchmark.  
 
 ## Dataset
 ### 1. Data Collection
@@ -66,7 +65,7 @@ The ability to understand the ways to interact with objects from visual cues, a.
 
 - Given an object without knowing the affordances supported by the object, the `full-shape` affordance estimation task aims to estimate the supported affordance type and predict the point-wise probabilistic score of affordance for complete 3D point clouds.
 
-|            | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
+|    Full-Shape        | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
 |:----------:|:------:|:-------:|:-------:|:-----:|
 | PointNet++ |  48.0  |   87.4  |   19.3  | 0.059 |
 |    DGCNN   |  46.4  |   85.5  |   17.8  | 0.080 |
@@ -79,7 +78,7 @@ The ability to understand the ways to interact with objects from visual cues, a.
 - We can only expect partial view of 3D shapes, represented as partial point cloud in real-world application scenarios. `Partial-View` affordance estimation is concerned with the estimation of affordance from partial point cloud. 
 - In specific, because all shapes are well aligned within the (-1,-1,-1) to (1,1,1) cube, we set up 4 affine cameras located at (1,1,1), (-1,-1,1), (1,-1,-1), (-1,1,-1) in Cartesian coordinate system, facing towards the origin, to obtain the partial-view point clouds. We estimate the affordance on the visible partial point cloud only.
 
-|            | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
+|   Partial  | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
 |:----------:|:------:|:-------:|:-------:|:-----:|
 | PointNet++ |  45.7  |   85.2  |   16.9  | 0.062 |
 |    DGCNN   |  42.2  |   83.7  |   13.8  | 0.069 |
@@ -90,17 +89,17 @@ The ability to understand the ways to interact with objects from visual cues, a.
 ### 4. Rotation-Invariant Affordance Estimation
 
 - The shapes in `3D AffordanceNet` are all aligned in canonical poses, however, the data observed by sensors in the real world are not always in canonical poses. The difference in rotation between real data and training data will lead to a performance drop in real-world usage. `Rotation-Invariant` affordance estimation aims to estimate the affordance of rotated objects.
-- We propose two different rotation settings: $z/z$ and $SO(3)/SO(3)$ where $z/z$ means rotation is applied along z axis only for both training and inference stages while $SO(3)/SO(3)$ refers to $SO(3)$ rotation, i.e. freely rotation along x, y and z axes.
+- We propose two different rotation settings: ***z/z*** and ***SO(3)/SO(3)*** where ***z/z*** means rotation is applied along ***z*** axis only for both training and inference stages while ***SO(3)/SO(3)*** refers to ***SO(3)*** rotation, i.e. freely rotation along ***x***, ***y*** and ***z*** axes.
 
-|    $z/z$   | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
+| ***z/z***  | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
 |:----------:|:------:|:-------:|:-------:|:-----:|
-| PointNet++ |  47.3  |   87.0  |   18.7  | 0.06 |
+| PointNet++ |  47.3  |   87.0  |   18.7  | 0.06  |
 |    DGCNN   |  44.8  |   84.9  |   16.1  | 0.074 |
 |            |        |         |         |       |
 |            |        |         |         |       |
 |            |        |         |         |       |
 
-|    $SO(3)/SO(3)$   | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
+| ***SO(3)/SO(3)***   | mAP(%) | mAUC(%) | aIOU(%) |  MSE  |
 |:----------:|:------:|:-------:|:-------:|:-----:|
 | PointNet++ |  41.8  |   83.3  |   15.2  | 0.072 |
 |    DGCNN   |  37.3  |   78.9  |   12.8  | 0.08  |
